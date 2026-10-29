@@ -525,8 +525,16 @@ impl<'a> Exporter<'a> {
             self.root.insert(decl_slot + k, e);
         }
         if !d.pools.is_empty() {
-            // the header documents the definitions of a document with pools
-            documentation(&mut self.root, d.attrs.get(DOC_KEY).map(String::as_str));
+            // the header documents the collaboration of a document with pools (the definitions
+            // of BPMN 2.0.2 are no base element and have no documentation)
+            if let Some(c) = self
+                .root
+                .children
+                .iter_mut()
+                .find(|c| c.ns == BPMN_NS && c.name == "collaboration")
+            {
+                documentation(c, d.attrs.get(DOC_KEY).map(String::as_str));
+            }
         }
         self.root
     }

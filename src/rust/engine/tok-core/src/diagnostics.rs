@@ -76,14 +76,14 @@ pub const MESSAGES: &[(&str, Severity, &str, &str)] = &[
     (
         "P005",
         E,
-        "the document must start with the header 'tok 0.1'",
-        "dokument musi zaczynać się nagłówkiem „tok 0.1”",
+        "the document must start with a header such as 'tok 1.0'",
+        "dokument musi zaczynać się nagłówkiem, na przykład „tok 1.0”",
     ),
     (
         "P006",
         W,
-        "unknown language version {version}; this tool reads version 0.1",
-        "nieznana wersja języka {version}; to narzędzie czyta wersję 0.1",
+        "unknown language version {version}; this tool reads versions 0.1, 0.3, 0.5, 0.6, 0.7 and 1.0",
+        "nieznana wersja języka {version}; to narzędzie czyta wersje 0.1, 0.3, 0.5, 0.6, 0.7 i 1.0",
     ),
     (
         "P007",
@@ -568,6 +568,14 @@ pub const BPMN_EN: &[(&str, &str)] = &[
         "W021",
         "branch of an XOR/OR split without label, condition or default status",
     ),
+    (
+        "W022",
+        "branch without a condition at an element that splits conditionally (it has a default flow or other branches have conditions)",
+    ),
+    (
+        "W023",
+        "sequence flow repeats another one (same source, target and condition)",
+    ),
     ("W030", "lane refers to an element inside a sub-process"),
     ("W031", "element outside every lane"),
     ("W040", "process without a start or end event"),
@@ -576,6 +584,7 @@ pub const BPMN_EN: &[(&str, &str)] = &[
         "W042",
         "path without an end event (element without outgoing flow)",
     ),
+    ("W043", "sequence flow from an element back to itself"),
     ("W050", "OR split without a default flow"),
     (
         "W051",

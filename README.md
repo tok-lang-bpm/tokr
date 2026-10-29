@@ -24,7 +24,7 @@ install.packages("tokr", repos = c("https://tok-lang-bpm.r-universe.dev", "https
 From a release archive `tokr_VERSION.tar.gz` (it contains every Rust crate it needs and installs without network access; `r/build.sh` of the repository builds it):
 
 ```r
-install.packages("tokr_1.0.1.tar.gz", repos = NULL, type = "source")
+install.packages("tokr_1.0.2.tar.gz", repos = NULL, type = "source")
 ```
 
 From a checkout of the repository:

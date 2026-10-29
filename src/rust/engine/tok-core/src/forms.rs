@@ -63,8 +63,13 @@ pub fn parse_options(text: &str) -> Vec<Json> {
     out
 }
 
-/// The Camunda form as JSON.
+/// The Camunda form as JSON (exporter version 0.1.0, as the pure-Python implementation).
 pub fn form_json(form: &Form) -> Json {
+    form_json_version(form, "0.1.0")
+}
+
+/// The Camunda form as JSON, with the given version of the exporter.
+fn form_json_version(form: &Form, version: &str) -> Json {
     let mut components = Vec::new();
     let mut ntext = 0;
     for item in &form.items {
@@ -133,7 +138,7 @@ pub fn form_json(form: &Form) -> Json {
             "exporter",
             obj(vec![
                 ("name", Json::Str("tok".into())),
-                ("version", Json::Str("0.1.0".into())),
+                ("version", Json::Str(version.into())),
             ]),
         ),
         ("components", Json::Arr(components)),
@@ -141,7 +146,20 @@ pub fn form_json(form: &Form) -> Json {
     ])
 }
 
-/// Camunda form JSON text (file `<form id>.form`).
+/// Camunda form JSON text (file `<form id>.form`), as the pure-Python implementation writes
+/// it (exporter version 0.1.0).
 pub fn export_form(form: &Form) -> String {
     format!("{}\n", form_json(form).pretty())
+}
+
+/// Camunda form JSON text of a form of the document. The exporter version is the language
+/// version of the document, as in the BPMN and DMN files (`exporterVersion`); documents of
+/// languages 0.1 and 0.3 keep 0.1.0, the output of the pure-Python implementation.
+pub fn export_form_of(doc: &crate::model::Document, form: &Form) -> String {
+    let version = if doc.lang_05() {
+        doc.version.as_deref().unwrap_or("0.1.0")
+    } else {
+        "0.1.0"
+    };
+    format!("{}\n", form_json_version(form, version).pretty())
 }

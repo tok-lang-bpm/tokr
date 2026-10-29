@@ -899,6 +899,78 @@ pub fn validate_model(md: &Model, opts: &ValidateOptions) -> Vec<Issue> {
                 format!("{} bez nazwy ({}).", capitalize(&tag_pl_or(&t)), py(eid)),
             );
         }
+        if t != "parallelGateway"
+            && t != "eventBasedGateway"
+            && outs.len() > 1
+            && (dflt.is_some()
+                || outs
+                    .iter()
+                    .any(|&f| d.find(f, &m("conditionExpression")).is_some()))
+        {
+            for &f in outs {
+                if md.id_of(f) != md.attr(e, "default")
+                    && d.find(f, &m("conditionExpression")).is_none()
+                {
+                    o.add(
+                        Level::Warning,
+                        "W022",
+                        md.id_of(f),
+                        format!(
+                            "Gałąź {} elementu {} nie ma warunku, choć element rozgałęzia się warunkowo (ma \
+                             przepływ domyślny albo inne gałęzie mają warunki); bez warunku nie wiadomo, kiedy \
+                             ta gałąź jest wybierana.",
+                            py(md.id_of(f)),
+                            md.label(Some(e))
+                        ),
+                    );
+                }
+            }
+        }
+    }
+
+    // --- repeated sequence flows and flows from an element back to itself
+    let mut pairs: HashMap<(String, String, Option<String>), Option<String>> = HashMap::new();
+    for &f in &md.seq {
+        let fid = md.id_of(f);
+        let (Some(s), Some(t)) = (
+            md.attr(f, "sourceRef").filter(|x| !x.is_empty()),
+            md.attr(f, "targetRef").filter(|x| !x.is_empty()),
+        ) else {
+            continue;
+        };
+        let cond = d
+            .find(f, &m("conditionExpression"))
+            .map(|c| text_of(md, c).trim().to_string());
+        let key = (s.to_string(), t.to_string(), cond);
+        if let Some(first) = pairs.get(&key) {
+            o.add(
+                Level::Warning,
+                "W023",
+                fid,
+                format!(
+                    "Przepływ {} powtarza przepływ {} (to samo źródło, cel i warunek).",
+                    py(fid),
+                    py(first.as_deref())
+                ),
+            );
+        } else {
+            pairs.insert(key, fid.map(str::to_string));
+        }
+        if s == t
+            && let Some(node) = md.get(Some(s))
+        {
+            o.add(
+                Level::Warning,
+                "W043",
+                fid,
+                format!(
+                    "Przepływ {} prowadzi z {} z powrotem do tego samego elementu; powtórzenie zapisz pętlą \
+                     (loop) czynności albo bramką.",
+                    py(fid),
+                    md.label(Some(node))
+                ),
+            );
+        }
     }
 
     // --- lanes

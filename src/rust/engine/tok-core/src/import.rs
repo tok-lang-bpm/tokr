@@ -802,9 +802,13 @@ impl<'a, 'i> Importer<'a, 'i> {
         self.choreographies();
         self.process_names(single);
         if !self.doc.pools.is_empty() {
-            // the header documents the definitions of a document with pools
+            // the header documents the collaboration of a document with pools; files written
+            // by tok 1.0.1 and older put it into the definitions
+            let holder = collab
+                .filter(|c| find(*c, "documentation").is_some())
+                .unwrap_or(root);
             let mut attrs = std::mem::take(&mut self.doc.attrs);
-            self.doc(root, &mut attrs);
+            self.doc(holder, &mut attrs);
             self.doc.attrs = attrs;
         }
         self.flows_and_artifacts();

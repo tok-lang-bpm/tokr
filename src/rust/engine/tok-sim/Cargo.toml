@@ -1,6 +1,6 @@
 [package]
 name = "tok-sim"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2024"
 rust-version = "1.99"
 license = "GPL-3.0-or-later"
@@ -16,7 +16,7 @@ categories = ["simulation", "science"]
 description = "Discrete-event simulator of the tok process language"
 
 [dependencies]
-tok-core = { path = "../tok-core", version = "1.0.1" }
+tok-core = { path = "../tok-core", version = "1.0.2" }
 thiserror = "2.0.21"
 indexmap = "2"
 

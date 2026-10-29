@@ -1274,11 +1274,46 @@ pub fn parse_expression(text: &str, names: &Names) -> R<Expr> {
         return syntax("empty expression");
     }
     let mut p = parser(text, names)?;
+    no_comparison_after_comparison(&p.t)?;
     let e = p.expression()?;
     if !p.at_end() {
         return syntax(format!("unexpected {}", show(p.peek(0))));
     }
     Ok(e)
+}
+
+/// `a >= > 18`: in an expression a comparison operator cannot follow another one (the unary
+/// comparison `> 18` is a primary of its own, but nothing is compared with it). Checked on
+/// the tokens before parsing, so that the recursive descent (which runs deeply nested
+/// expressions at the limit of the stack) is unchanged. The angle brackets of a type
+/// (`list<list<number>>`, `context<a: number>`, `range<…>`, `function<…>`) are skipped.
+fn no_comparison_after_comparison(t: &[Tok]) -> R<()> {
+    let is_cmp = |x: &Tok| x.k == K::Op && cmp_op(&x.text).is_some();
+    let mut angle = 0usize;
+    for (i, x) in t.iter().enumerate() {
+        if x.k == K::Op
+            && x.text == "<"
+            && i > 0
+            && t[i - 1].k == K::Name
+            && matches!(
+                t[i - 1].text.as_str(),
+                "list" | "context" | "range" | "function"
+            )
+        {
+            angle += 1;
+            continue;
+        }
+        if angle > 0 {
+            if x.k == K::Op && x.text == ">" {
+                angle -= 1;
+            }
+            continue;
+        }
+        if is_cmp(x) && t.get(i + 1).is_some_and(is_cmp) {
+            return syntax(format!("unexpected {}", show(&t[i + 1])));
+        }
+    }
+    Ok(())
 }
 
 /// Parse unary tests (a decision table input cell, allowed values).
