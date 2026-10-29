@@ -1,0 +1,11 @@
+Symulacja (ziarno 42): rozpoczęte sprawy 10, zakończone 10
+
+Zakończenia
+  zamowiona                          10  100.0%
+
+Czas cyklu: średnio 0 s, mediana 0 s, 90. percentyl 0 s
+
+Czynności  (liczba, średnie oczekiwanie, średnie wykonanie)
+  Ustalenie trybu akceptacji         10         0 s         0 s
+  Wyliczenie kosztu zakupu           10         0 s         0 s
+  Złożenie zamówienia u dostawcy     10         0 s         0 s

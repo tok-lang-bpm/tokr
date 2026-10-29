@@ -1,0 +1,22 @@
+[package]
+name = "tok-sim"
+version = "1.0.1"
+edition = "2024"
+rust-version = "1.99"
+license = "GPL-3.0-or-later"
+authors = ["Marek Deja"]
+repository = "https://github.com/tok-lang-bpm/tok"
+homepage = "https://tok-lang-bpm.github.io/"
+documentation = "https://docs.rs/tok-sim"
+readme = "README.md"
+# the tests and examples read the conformance corpus and the fixtures of the repository
+exclude = ["tests/", "examples/"]
+keywords = ["bpmn", "simulation", "discrete-event", "process-mining", "tok"]
+categories = ["simulation", "science"]
+description = "Discrete-event simulator of the tok process language"
+
+[dependencies]
+tok-core = { path = "../tok-core", version = "1.0.1" }
+thiserror = "2.0.21"
+indexmap = "2"
+

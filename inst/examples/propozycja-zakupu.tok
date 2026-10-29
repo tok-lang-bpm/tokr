@@ -1,0 +1,52 @@
+tok 0.1 "Propozycja zakupu książki" executable
+
+pool biblioteka "Biblioteka uczelniana" process=propozycja-zakupu
+  lane czytelnik "Czytelnik"
+    start zlozona "Propozycja złożona" form=f-propozycja
+  lane system "System biblioteczny"
+    rule tryb "Ustalenie trybu akceptacji" decision=tryb-akceptacji result=tryb
+    xor potrzebna "Czy potrzebna akceptacja kierownika?"
+    xor scalenie
+    script koszt "Wyliczenie kosztu zakupu" expr="cena + 12.5" result=koszt
+  lane kierownik "Kierownik Oddziału Gromadzenia"
+    user akceptacja "Akceptacja propozycji" form=f-akceptacja
+    boundary termin "Minęło 7 dni" on=akceptacja timer=P7D
+    xor zgoda "Czy kierownik się zgodził?"
+    end odrzucona "Propozycja odrzucona"
+    end wygasla "Propozycja wygasła"
+  lane gromadzenie "Bibliotekarz gromadzenia"
+    user zamowienie "Złożenie zamówienia u dostawcy" form=f-zamowienie
+    end zamowiona "Książka zamówiona"
+
+flow zlozona -> tryb -> potrzebna
+flow potrzebna -> akceptacja "tak" when="tryb = \"kierownik\""
+flow potrzebna -> scalenie "nie" default
+flow akceptacja -> zgoda
+flow zgoda -> scalenie "tak" when="zgoda = true"
+flow zgoda -> odrzucona "nie" default
+flow termin -> wygasla
+flow scalenie -> koszt -> zamowienie -> zamowiona
+
+decision tryb-akceptacji "Tryb akceptacji" hit=first
+  | rodzaj: string | cena: number || tryb: string   ||               |
+  | "e-book"       | -            || "kierownik"    || licencje      |
+  | "drukowana"    | <= 150       || "automatyczny" || tania książka |
+  | -              | -            || "kierownik"    || pozostałe     |
+
+form f-propozycja "Propozycja zakupu"
+  text "## Propozycja zakupu książki"
+  field tytul "Tytuł" required type=textfield
+  field autor "Autor" type=textfield
+  field rodzaj "Rodzaj publikacji" required type=select options="drukowana:książka drukowana, e-book:e-book" default=drukowana
+  field cena "Przybliżona cena (zł)" required type=number min=0
+  field uzasadnienie "Uzasadnienie" type=textarea
+
+form f-akceptacja "Akceptacja"
+  text "## Propozycja: {{tytul}}"
+  field zgoda "Decyzja" required type=radio options="true:zgoda na zakup, false:odmowa"
+  field komentarz "Komentarz dla czytelnika" type=textarea
+
+form f-zamowienie "Zamówienie"
+  text "## Zamówienie: {{tytul}} (koszt z wysyłką: {{koszt}} zł)"
+  field dostawca "Dostawca" required type=textfield
+  field numer_zamowienia "Numer zamówienia" required type=textfield

@@ -1,0 +1,15 @@
+Symulacja (ziarno 5): rozpoczęte sprawy 40, zakończone 40
+
+Zakończenia
+  done                                3    7.5%
+  refused                             3    7.5%
+  timeout                            34   85.0%
+
+Czas cyklu: średnio 41.4 min, mediana 40.0 min, 90. percentyl 40.0 min
+
+Czynności  (liczba, średnie oczekiwanie, średnie wykonanie)
+  Check the request                   6     3.1 min    25.5 min
+  Lend the book                       3    36.4 min     4.7 min
+
+Zasoby (wykorzystanie)
+  Desk staff                     x1    94.4%

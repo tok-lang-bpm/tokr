@@ -1,0 +1,19 @@
+Simulation (seed 7): 300 cases started, 300 finished
+
+End events
+  zakonczona                        252   84.0%
+  odrzucony                          48   16.0%
+
+Cycle time: mean 17.5 h, median 14.3 h, 90th percentile 1.5 d
+
+Activities  (count, mean wait, mean processing)
+  Rejestracja wniosku               300        26 s    11.6 min
+  Ocena wniosku                     300       4.2 h    30.8 min
+  Poszukiwania w zasobie            252       4.0 h       5.8 h
+  Opracowanie odpowiedzi            252       3.8 h       1.1 h
+  Wysłanie odpowiedzi               252        30 s    10.1 min
+  Wysłanie odmowy                    48        26 s    10.3 min
+
+Resources (utilization)
+  Archiwiści                     x2    80.9%
+  Kanceliści                     x1     9.2%

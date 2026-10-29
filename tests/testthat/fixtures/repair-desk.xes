@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log xes.version="1.0">
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
+	<extension name="Lifecycle" prefix="lifecycle" uri="http://www.xes-standard.org/lifecycle.xesext"/>
+	<extension name="Organizational" prefix="org" uri="http://www.xes-standard.org/org.xesext"/>
+	<global scope="trace">
+		<string key="concept:name" value="__INVALID__"/>
+		<date key="start" value="1970-01-01T00:00:00.000+00:00"/>
+	</global>
+	<global scope="event">
+		<string key="concept:name" value="__INVALID__"/>
+		<string key="concept:instance" value="__INVALID__"/>
+		<string key="lifecycle:transition" value="complete"/>
+		<date key="time:timestamp" value="1970-01-01T00:00:00.000+00:00"/>
+		<string key="activity" value="__INVALID__"/>
+	</global>
+	<classifier name="Activity" keys="concept:name"/>
+	<classifier name="Activity_lifecycle" keys="concept:name lifecycle:transition"/>
+	<classifier name="Activity_id" keys="activity"/>
+	<string key="lifecycle:model" value="standard"/>
+	<int key="seed" value="3"/>
+	<trace>
+		<string key="concept:name" value="1"/>
+		<date key="start" value="2027-03-01T09:00:00.000+01:00"/>
+		<date key="end" value="2027-03-01T09:49:56.984+01:00"/>
+		<string key="end_event" value="done"/>
+		<float key="cycle_time_s" value="2996.984"/>
+		<string key="kind" value="phone"/>
+		<float key="value" value="294.90315138317834"/>
+		<boolean key="urgent" value="false"/>
+		<float key="items" value="3.0"/>
+		<date key="received" value="2027-03-01T00:00:00.000"/>
+		<int key="parts" value="6"/>
+		<boolean key="paid" value="false"/>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="1"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:00:00.000+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="1"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:00:00.000+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="1"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:00:00.000+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="2"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:00:00.000+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="2"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:00:00.000+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="2"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:00:00.000+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="3"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:00:00.000+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="3"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:00:00.000+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="3"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:09:52.886+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="fix"/>
+			<string key="concept:instance" value="6"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:09:52.886+01:00"/>
+			<string key="org:resource" value="tech"/>
+			<string key="activity" value="fix"/>
+		</event>
+		<event>
+			<string key="concept:name" value="fix"/>
+			<string key="concept:instance" value="6"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:09:52.886+01:00"/>
+			<string key="org:resource" value="tech"/>
+			<string key="activity" value="fix"/>
+		</event>
+		<event>
+			<string key="concept:name" value="fix"/>
+			<string key="concept:instance" value="6"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:14:56.837+01:00"/>
+			<string key="org:resource" value="tech"/>
+			<string key="activity" value="fix"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Return &quot;device&quot;"/>
+			<string key="concept:instance" value="17"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:14:56.837+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="ret"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Return &quot;device&quot;"/>
+			<string key="concept:instance" value="17"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:19:56.984+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="ret"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Return &quot;device&quot;"/>
+			<string key="concept:instance" value="17"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:49:56.984+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="ret"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="2"/>
+		<date key="start" value="2027-03-01T09:11:02.352+01:00"/>
+		<date key="end" value="2027-03-01T10:19:56.984+01:00"/>
+		<string key="end_event" value="done"/>
+		<float key="cycle_time_s" value="4134.632"/>
+		<string key="kind" value="laptop"/>
+		<float key="value" value="166.70930644760344"/>
+		<boolean key="urgent" value="true"/>
+		<float key="items" value="3.0"/>
+		<date key="received" value="2027-03-01T00:00:00.000"/>
+		<int key="parts" value="6"/>
+		<boolean key="paid" value="false"/>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="4"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:11:02.352+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="4"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:11:02.352+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="4"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:11:02.352+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="5"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:11:02.352+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="5"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:11:02.352+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="5"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:11:02.352+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="7"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:11:02.352+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="7"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:11:02.352+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="7"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:19:56.984+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="fix"/>
+			<string key="concept:instance" value="10"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:19:56.984+01:00"/>
+			<string key="org:resource" value="tech"/>
+			<string key="activity" value="fix"/>
+		</event>
+		<event>
+			<string key="concept:name" value="fix"/>
+			<string key="concept:instance" value="10"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:19:56.984+01:00"/>
+			<string key="org:resource" value="tech"/>
+			<string key="activity" value="fix"/>
+		</event>
+		<event>
+			<string key="concept:name" value="fix"/>
+			<string key="concept:instance" value="10"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:28:08.704+01:00"/>
+			<string key="org:resource" value="tech"/>
+			<string key="activity" value="fix"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Return &quot;device&quot;"/>
+			<string key="concept:instance" value="24"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:28:08.704+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="ret"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Return &quot;device&quot;"/>
+			<string key="concept:instance" value="24"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:49:56.984+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="ret"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Return &quot;device&quot;"/>
+			<string key="concept:instance" value="24"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T10:19:56.984+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="ret"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="3"/>
+		<date key="start" value="2027-03-01T09:25:59.738+01:00"/>
+		<date key="end" value="2027-03-01T09:37:59.738+01:00"/>
+		<string key="end_event" value="gone"/>
+		<float key="cycle_time_s" value="720.0"/>
+		<string key="kind" value="phone"/>
+		<float key="value" value="335.6872962283348"/>
+		<boolean key="urgent" value="false"/>
+		<float key="items" value="3.0"/>
+		<date key="received" value="2027-03-01T00:00:00.000"/>
+		<int key="parts" value="6"/>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="8"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:25:59.738+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="8"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:25:59.738+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="8"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:25:59.738+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="9"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:25:59.738+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="9"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:25:59.738+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="9"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:25:59.738+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="13"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:25:59.738+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="13"/>
+			<string key="lifecycle:transition" value="withdraw"/>
+			<date key="time:timestamp" value="2027-03-01T09:37:59.738+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="4"/>
+		<date key="start" value="2027-03-01T09:36:13.647+01:00"/>
+		<date key="end" value="2027-03-01T09:48:13.647+01:00"/>
+		<string key="end_event" value="gone"/>
+		<float key="cycle_time_s" value="720.0"/>
+		<string key="kind" value="laptop"/>
+		<float key="value" value="78.81414720214879"/>
+		<boolean key="urgent" value="false"/>
+		<float key="items" value="3.0"/>
+		<date key="received" value="2027-03-01T00:00:00.000"/>
+		<int key="parts" value="6"/>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="11"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:36:13.647+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="11"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:36:13.647+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="11"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:36:13.647+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="12"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:36:13.647+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="12"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:36:13.647+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="12"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:36:13.647+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="16"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:36:13.647+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="16"/>
+			<string key="lifecycle:transition" value="withdraw"/>
+			<date key="time:timestamp" value="2027-03-01T09:48:13.647+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="5"/>
+		<date key="start" value="2027-03-01T09:47:08.307+01:00"/>
+		<date key="end" value="2027-03-01T09:59:08.307+01:00"/>
+		<string key="end_event" value="gone"/>
+		<float key="cycle_time_s" value="720.0"/>
+		<string key="kind" value="phone"/>
+		<float key="value" value="63.9552881613875"/>
+		<boolean key="urgent" value="false"/>
+		<float key="items" value="3.0"/>
+		<date key="received" value="2027-03-01T00:00:00.000"/>
+		<int key="parts" value="6"/>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="14"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:47:08.307+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="14"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:47:08.307+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="14"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:47:08.307+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="15"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:47:08.307+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="15"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:47:08.307+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="15"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:47:08.307+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="20"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:47:08.307+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="20"/>
+			<string key="lifecycle:transition" value="withdraw"/>
+			<date key="time:timestamp" value="2027-03-01T09:59:08.307+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="6"/>
+		<date key="start" value="2027-03-01T09:56:51.956+01:00"/>
+		<date key="end" value="2027-03-01T10:08:51.956+01:00"/>
+		<string key="end_event" value="gone"/>
+		<float key="cycle_time_s" value="720.0"/>
+		<string key="kind" value="laptop"/>
+		<float key="value" value="445.46576011496677"/>
+		<boolean key="urgent" value="false"/>
+		<float key="items" value="3.0"/>
+		<date key="received" value="2027-03-01T00:00:00.000"/>
+		<int key="parts" value="6"/>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="18"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:56:51.956+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="18"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:56:51.956+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="18"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:56:51.956+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="19"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:56:51.956+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="19"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T09:56:51.956+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="19"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T09:56:51.956+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="21"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T09:56:51.956+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="21"/>
+			<string key="lifecycle:transition" value="withdraw"/>
+			<date key="time:timestamp" value="2027-03-01T10:08:51.956+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="7"/>
+		<date key="start" value="2027-03-01T10:11:04.616+01:00"/>
+		<date key="end" value="2027-03-01T10:23:04.616+01:00"/>
+		<string key="end_event" value="gone"/>
+		<float key="cycle_time_s" value="720.0"/>
+		<string key="kind" value="phone"/>
+		<float key="value" value="410.4089469433527"/>
+		<boolean key="urgent" value="false"/>
+		<float key="items" value="3.0"/>
+		<date key="received" value="2027-03-01T00:00:00.000"/>
+		<int key="parts" value="6"/>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="22"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T10:11:04.616+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="22"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T10:11:04.616+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="22"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T10:11:04.616+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="23"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T10:11:04.616+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="23"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T10:11:04.616+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="23"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T10:11:04.616+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="25"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T10:11:04.616+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="25"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T10:19:56.984+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="25"/>
+			<string key="lifecycle:transition" value="ati_abort"/>
+			<date key="time:timestamp" value="2027-03-01T10:23:04.616+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="8"/>
+		<date key="start" value="2027-03-01T10:25:25.968+01:00"/>
+		<date key="end" value="2027-03-01T10:37:25.968+01:00"/>
+		<string key="end_event" value="gone"/>
+		<float key="cycle_time_s" value="720.0"/>
+		<string key="kind" value="phone"/>
+		<float key="value" value="111.18598709030101"/>
+		<boolean key="urgent" value="true"/>
+		<float key="items" value="3.0"/>
+		<date key="received" value="2027-03-01T00:00:00.000"/>
+		<int key="parts" value="6"/>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="26"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T10:25:25.968+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="26"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T10:25:25.968+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Register"/>
+			<string key="concept:instance" value="26"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T10:25:25.968+01:00"/>
+			<string key="activity" value="prep"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="27"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T10:25:25.968+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="27"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T10:25:25.968+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Count parts"/>
+			<string key="concept:instance" value="27"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<date key="time:timestamp" value="2027-03-01T10:25:25.968+01:00"/>
+			<string key="activity" value="count"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="28"/>
+			<string key="lifecycle:transition" value="schedule"/>
+			<date key="time:timestamp" value="2027-03-01T10:25:25.968+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="28"/>
+			<string key="lifecycle:transition" value="start"/>
+			<date key="time:timestamp" value="2027-03-01T10:25:25.968+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Triage &amp; &lt;sort&gt;"/>
+			<string key="concept:instance" value="28"/>
+			<string key="lifecycle:transition" value="ati_abort"/>
+			<date key="time:timestamp" value="2027-03-01T10:37:25.968+01:00"/>
+			<string key="org:resource" value="desk"/>
+			<string key="activity" value="triage"/>
+		</event>
+	</trace>
+</log>

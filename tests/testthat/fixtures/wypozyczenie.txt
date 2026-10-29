@@ -1,0 +1,11 @@
+Simulation (seed 1): 100 cases started, 100 finished
+
+End events
+  wskazany                          100  100.0%
+
+Cycle time: mean 0 s, median 0 s, 90th percentile 0 s
+
+Activities  (count, mean wait, mean processing)
+  Złożenie zamówienia               100         0 s         0 s
+  Sprawdzenie katalogów             100         0 s         0 s
+  Wskazanie egzemplarza             100         0 s         0 s

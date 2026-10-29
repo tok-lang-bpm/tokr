@@ -1,0 +1,18 @@
+tok 0.3 "Loan desk"
+start s "Request"
+user check "Check the request" by=staff duration="tri(10m, 20m, 1h)"
+boundary late "Too late" on=check timer=PT40M
+xor ok "Accepted?"
+user lend "Lend the book" by=staff duration="exp(15m)" assign="returned=bern(0.9)"
+end done "Lent"
+end refused "Refused"
+end timeout "Timed out"
+flow s -> check -> ok
+flow ok -> lend "yes" when="kind = \"print\""
+flow ok -> refused "no" default
+flow lend -> done
+flow late -> timeout
+simulate cases=40 seed=5 arrival="exp(10m)" start="2027-05-03T08:00+02:00"
+resource staff "Desk staff" count=1
+variable kind "cat(print=0.7, ebook=0.3)"
+variable price "unif(10, 200)"

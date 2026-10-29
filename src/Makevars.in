@@ -1,0 +1,25 @@
+TARGET_DIR = ./rust/target
+LIBDIR = $(TARGET_DIR)/release
+STATLIB = $(LIBDIR)/libtokr.a
+PKG_LIBS = -L$(LIBDIR) -ltokr
+
+all: $(SHLIB) rust_clean
+
+.PHONY: $(STATLIB)
+
+$(SHLIB): $(STATLIB)
+
+CARGOTMP = $(CURDIR)/.cargo
+
+$(STATLIB):
+	@OFFLINE_SETUP@
+	export CARGO_HOME=$(CARGOTMP) && \
+	export PATH="$(PATH):$(HOME)/.cargo/bin" && \
+	cargo build @CARGO_FLAGS@ --release --lib --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
+	rm -Rf $(CARGOTMP)
+
+rust_clean: $(SHLIB)
+	rm -Rf $(CARGOTMP) @CLEAN_TARGET@
+
+clean:
+	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS) $(TARGET_DIR)

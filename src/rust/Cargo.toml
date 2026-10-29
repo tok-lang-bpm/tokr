@@ -1,0 +1,23 @@
+[package]
+name = "tok-r"
+version = "1.0.1"
+edition = "2024"
+rust-version = "1.99"
+license = "GPL-3.0-or-later"
+authors = ["Marek Deja"]
+description = "R bindings of the tok engine (package tokr)"
+publish = false
+
+[lib]
+name = "tokr"
+crate-type = ["staticlib"]
+
+[dependencies]
+tok-core = { path = "engine/tok-core" }
+tok-bpmn = { path = "engine/tok-bpmn" }
+tok-sim = { path = "engine/tok-sim" }
+extendr-api = "0.9"
+
+[profile.release]
+lto = true
+codegen-units = 1

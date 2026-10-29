@@ -1,0 +1,23 @@
+tok 0.1 "Wypożyczenie międzybiblioteczne"
+
+pool biblioteka "Biblioteka uczelniana"
+  lane czytelnik "Czytelnik"
+    start potrzeba "Potrzeba książki"
+    user zamowienie "Złożenie zamówienia"
+  lane bibliotekarz "Bibliotekarz"
+    user katalogi "Sprawdzenie katalogów"
+    xor dostepna "Czy książka dostępna lokalnie?"
+    user wskazanie "Wskazanie egzemplarza"
+    send wyslanie "Zamówienie w innej bibliotece" message="Zamówienie"
+    end wskazany "Egzemplarz wskazany"
+    end zamowione "Zamówienie złożone"
+
+pool inna "Biblioteka udostępniająca"
+
+flow potrzeba -> zamowienie -> katalogi -> dostepna
+flow dostepna -> wskazanie "tak"
+flow dostepna -> wyslanie "nie"
+flow wskazanie -> wskazany
+flow wyslanie -> zamowione
+
+message wyslanie -> inna "Zamówienie"

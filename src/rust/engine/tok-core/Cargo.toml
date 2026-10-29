@@ -1,0 +1,21 @@
+[package]
+name = "tok-core"
+version = "1.0.1"
+edition = "2024"
+rust-version = "1.99"
+license = "GPL-3.0-or-later"
+authors = ["Marek Deja"]
+repository = "https://github.com/tok-lang-bpm/tok"
+homepage = "https://tok-lang-bpm.github.io/"
+documentation = "https://docs.rs/tok-core"
+readme = "README.md"
+# the tests and examples read the conformance corpus and the fixtures of the repository
+exclude = ["tests/", "examples/"]
+keywords = ["bpmn", "dmn", "feel", "process-modelling", "tok"]
+categories = ["parser-implementations", "science"]
+description = "Parser, checker, canonical printer, BPMN 2.0 and DMN 1.5 export and import, and FEEL of the tok process language"
+
+[dependencies]
+indexmap = "2"
+roxmltree = "0.21.2"
+

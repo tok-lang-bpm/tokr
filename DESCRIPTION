@@ -1,0 +1,33 @@
+Package: tokr
+Type: Package
+Title: Process Models in the Plain-Text Language 'tok'
+Version: 1.0.1
+Authors@R: person("Marek", "Deja", email = "marek.deja@uj.edu.pl", role = c("aut", "cre", "cph"))
+Description: Reads, checks, formats and exports process models written in 'tok',
+    a plain-text language for Business Process Model and Notation (BPMN) 2.0
+    processes with their Decision Model and Notation (DMN) decisions, 'Camunda'
+    forms and simulation parameters. Models are checked against the rules of
+    BPMN 2.0, with diagnostics in English or Polish, and exported to BPMN files
+    with a diagram layout, Scalable Vector Graphics (SVG) pictures, DMN and form
+    files; they are drawn in the viewer and in 'R Markdown' and 'Quarto'
+    documents through a 'knitr' engine. Processes are simulated as
+    discrete-event models, giving indicators, an event log for process mining
+    and a table of cases. The work is done by the 'Rust' engine of 'tok', shared
+    with its 'Python' package and command line tool.
+License: GPL (>= 3)
+URL: https://tok-lang-bpm.github.io/,
+        https://github.com/tok-lang-bpm/tok
+BugReports: https://github.com/tok-lang-bpm/tok/issues
+Encoding: UTF-8
+Depends: R (>= 4.2)
+Suggests: knitr, rmarkdown, testthat (>= 3.0.0)
+Config/testthat/edition: 3
+SystemRequirements: Cargo (Rust's package manager), rustc >= 1.99
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 8.0.0
+Copyright: Marek Deja; the authors of the bundled Rust crates listed in
+        inst/AUTHORS.
+NeedsCompilation: yes
+Packaged: 2026-10-29 10:35:15 UTC; dejam
+Author: Marek Deja [aut, cre, cph]
+Maintainer: Marek Deja <marek.deja@uj.edu.pl>

@@ -1,0 +1,19 @@
+Symulacja (ziarno 3): rozpoczęte sprawy 20, zakończone 20
+
+Zakończenia
+  zakonczona                         18   90.0%
+  odrzucony                           2   10.0%
+
+Czas cyklu: średnio 8.9 h, mediana 8.4 h, 90. percentyl 13.9 h
+
+Czynności  (liczba, średnie oczekiwanie, średnie wykonanie)
+  Rejestracja wniosku                20         7 s    11.6 min
+  Ocena wniosku                      20    31.1 min    27.7 min
+  Poszukiwania w zasobie             18    50.1 min       5.4 h
+  Opracowanie odpowiedzi             18    57.9 min       1.2 h
+  Wysłanie odpowiedzi                18        23 s    10.3 min
+  Wysłanie odmowy                     2         0 s    10.4 min
+
+Zasoby (wykorzystanie)
+  Archiwiści                     x2    57.2%
+  Kanceliści                     x1     6.6%

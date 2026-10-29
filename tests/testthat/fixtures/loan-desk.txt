@@ -1,0 +1,15 @@
+Simulation (seed 5): 40 cases started, 40 finished
+
+End events
+  done                                3    7.5%
+  refused                             3    7.5%
+  timeout                            34   85.0%
+
+Cycle time: mean 41.4 min, median 40.0 min, 90th percentile 40.0 min
+
+Activities  (count, mean wait, mean processing)
+  Check the request                   6     3.1 min    25.5 min
+  Lend the book                       3    36.4 min     4.7 min
+
+Resources (utilization)
+  Desk staff                     x1    94.4%

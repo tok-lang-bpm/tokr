@@ -1,0 +1,27 @@
+tokr bundles the Rust engine of tok (Marek Deja, GPL-3.0-or-later) and, in
+src/rust/vendor.tar.xz, these Rust crates; the copyright of each crate belongs to its
+authors, named in the Cargo.toml of the crate, and each crate is used under its licence.
+
+equivalent v1.0.3: Apache-2.0 OR MIT, https://github.com/indexmap-rs/equivalent
+extendr-api v0.9.0: MIT, https://github.com/extendr/extendr
+extendr-ffi v0.9.0: MIT, https://github.com/extendr/extendr
+extendr-macros v0.9.0 (proc-macro): MIT, https://github.com/extendr/extendr
+hashbrown v0.17.1: MIT OR Apache-2.0, https://github.com/rust-lang/hashbrown
+indexmap v2.14.2: Apache-2.0 OR MIT, https://github.com/indexmap-rs/indexmap
+itoa v1.0.18: MIT OR Apache-2.0, https://github.com/dtolnay/itoa
+lazy_static v1.5.1: MIT OR Apache-2.0, https://github.com/rust-lang-nursery/lazy-static.rs
+memchr v2.8.3: Unlicense OR MIT, https://github.com/BurntSushi/memchr
+once_cell v1.21.4: MIT OR Apache-2.0, https://github.com/matklad/once_cell
+paste v1.0.15 (proc-macro): MIT OR Apache-2.0, https://github.com/dtolnay/paste
+proc-macro2 v1.0.107: MIT OR Apache-2.0, https://github.com/dtolnay/proc-macro2
+quote v1.0.47: MIT OR Apache-2.0, https://github.com/dtolnay/quote
+readonly v0.2.14 (proc-macro): MIT OR Apache-2.0, https://github.com/dtolnay/readonly
+roxmltree v0.21.2: MIT OR Apache-2.0, https://github.com/RazrFalcon/roxmltree
+serde_core v1.0.229: MIT OR Apache-2.0, https://github.com/serde-rs/serde
+serde_json v1.0.154: MIT OR Apache-2.0, https://github.com/serde-rs/json
+syn v2.0.119: MIT OR Apache-2.0, https://github.com/dtolnay/syn
+syn v3.0.9: MIT OR Apache-2.0, https://github.com/dtolnay/syn
+thiserror v2.0.21: MIT OR Apache-2.0, https://github.com/dtolnay/thiserror
+thiserror-impl v2.0.21 (proc-macro): MIT OR Apache-2.0, https://github.com/dtolnay/thiserror
+unicode-ident v1.0.27: (MIT OR Apache-2.0) AND Unicode-3.0, https://github.com/dtolnay/unicode-ident
+zmij v1.0.23: MIT, https://github.com/dtolnay/zmij

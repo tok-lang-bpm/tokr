@@ -1,0 +1,25 @@
+tok 0.1 "Kwerenda archiwalna: symulacja obciążenia"
+
+pool archiwum "Archiwum Państwowe"
+  lane kancelaria "Kancelaria"
+    start wplyw "Wniosek o kwerendę wpłynął"
+    user rejestracja "Rejestracja wniosku" by=kancelisci duration="tri(5m, 10m, 20m)"
+    send odmowa "Wysłanie odmowy" by=kancelisci duration="tri(5m, 10m, 15m)"
+    end odrzucony "Wniosek odrzucony"
+    send odpowiedz "Wysłanie odpowiedzi" by=kancelisci duration="tri(5m, 10m, 15m)"
+    end zakonczona "Kwerenda zakończona"
+  lane archiwista "Archiwista"
+    user ocena "Ocena wniosku" by=archiwisci duration="lnorm(30m, 10m)"
+    xor mozliwa "Czy kwerenda jest możliwa?"
+    user poszukiwania "Poszukiwania w zasobie" by=archiwisci duration="lnorm(6h, 3h)"
+    user opracowanie "Opracowanie odpowiedzi" by=archiwisci duration="tri(30m, 1h, 2h)"
+
+flow wplyw -> rejestracja -> ocena -> mozliwa
+flow mozliwa -> poszukiwania "tak" p=0.85
+flow mozliwa -> odmowa "nie" p=0.15
+flow odmowa -> odrzucony
+flow poszukiwania -> opracowanie -> odpowiedz -> zakonczona
+
+simulate cases=300 seed=7 arrival="exp(4h)"
+resource archiwisci "Archiwiści" count=2
+resource kancelisci "Kanceliści" count=1

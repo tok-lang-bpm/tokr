@@ -1,0 +1,97 @@
+case,activity,label,resource,enqueue,start,end,status
+1,rejestracja,Rejestracja wniosku,kancelisci,2027-01-04T08:00:00,2027-01-04T08:00:00,2027-01-04T08:09:13,completed
+1,ocena,Ocena wniosku,archiwisci,2027-01-04T08:09:13,2027-01-04T08:09:13,2027-01-04T08:32:55,completed
+2,rejestracja,Rejestracja wniosku,kancelisci,2027-01-04T11:08:35,2027-01-04T11:08:35,2027-01-04T11:17:46,completed
+2,ocena,Ocena wniosku,archiwisci,2027-01-04T11:17:46,2027-01-04T11:17:46,2027-01-04T11:43:29,completed
+1,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-04T08:32:55,2027-01-04T08:32:55,2027-01-04T16:18:44,completed
+1,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-04T16:18:44,2027-01-04T16:18:44,2027-01-04T17:34:20,completed
+1,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-04T17:34:20,2027-01-04T17:34:20,2027-01-04T17:46:45,completed
+2,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-04T11:43:29,2027-01-04T11:43:29,2027-01-04T17:51:10,completed
+2,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-04T17:51:10,2027-01-04T17:51:10,2027-01-04T19:00:26,completed
+2,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-04T19:00:26,2027-01-04T19:00:26,2027-01-04T19:11:50,completed
+3,rejestracja,Rejestracja wniosku,kancelisci,2027-01-05T08:53:19,2027-01-05T08:53:19,2027-01-05T09:06:17,completed
+4,rejestracja,Rejestracja wniosku,kancelisci,2027-01-05T09:09:11,2027-01-05T09:09:11,2027-01-05T09:18:57,completed
+5,rejestracja,Rejestracja wniosku,kancelisci,2027-01-05T09:16:45,2027-01-05T09:18:57,2027-01-05T09:30:03,completed
+4,ocena,Ocena wniosku,archiwisci,2027-01-05T09:18:57,2027-01-05T09:18:57,2027-01-05T09:40:10,completed
+3,ocena,Ocena wniosku,archiwisci,2027-01-05T09:06:17,2027-01-05T09:06:17,2027-01-05T09:46:45,completed
+4,odmowa,Wysłanie odmowy,kancelisci,2027-01-05T09:40:10,2027-01-05T09:40:10,2027-01-05T09:47:22,completed
+5,ocena,Ocena wniosku,archiwisci,2027-01-05T09:30:03,2027-01-05T09:40:10,2027-01-05T09:57:48,completed
+3,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-05T09:46:45,2027-01-05T09:46:45,2027-01-05T14:27:04,completed
+5,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-05T09:57:48,2027-01-05T09:57:48,2027-01-05T15:22:53,completed
+3,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-05T14:27:04,2027-01-05T14:27:04,2027-01-05T15:27:52,completed
+3,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-05T15:27:52,2027-01-05T15:27:52,2027-01-05T15:38:19,completed
+5,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-05T15:22:53,2027-01-05T15:22:53,2027-01-05T16:35:33,completed
+5,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-05T16:35:33,2027-01-05T16:35:33,2027-01-05T16:48:21,completed
+6,rejestracja,Rejestracja wniosku,kancelisci,2027-01-05T17:18:17,2027-01-05T17:18:17,2027-01-05T17:31:23,completed
+6,ocena,Ocena wniosku,archiwisci,2027-01-05T17:31:23,2027-01-05T17:31:23,2027-01-05T18:03:17,completed
+6,odmowa,Wysłanie odmowy,kancelisci,2027-01-05T18:03:17,2027-01-05T18:03:17,2027-01-05T18:16:57,completed
+7,rejestracja,Rejestracja wniosku,kancelisci,2027-01-06T03:52:55,2027-01-06T03:52:55,2027-01-06T04:09:08,completed
+7,ocena,Ocena wniosku,archiwisci,2027-01-06T04:09:08,2027-01-06T04:09:08,2027-01-06T04:42:14,completed
+8,rejestracja,Rejestracja wniosku,kancelisci,2027-01-06T07:14:59,2027-01-06T07:14:59,2027-01-06T07:22:09,completed
+8,ocena,Ocena wniosku,archiwisci,2027-01-06T07:22:09,2027-01-06T07:22:09,2027-01-06T07:59:58,completed
+7,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-06T04:42:14,2027-01-06T04:42:14,2027-01-06T10:32:13,completed
+8,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-06T07:59:58,2027-01-06T07:59:58,2027-01-06T10:36:19,completed
+8,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-06T10:36:19,2027-01-06T10:36:19,2027-01-06T11:17:14,completed
+8,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-06T11:17:14,2027-01-06T11:17:14,2027-01-06T11:27:51,completed
+7,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-06T10:32:13,2027-01-06T10:32:13,2027-01-06T12:06:00,completed
+7,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-06T12:06:00,2027-01-06T12:06:00,2027-01-06T12:12:30,completed
+9,rejestracja,Rejestracja wniosku,kancelisci,2027-01-06T14:56:41,2027-01-06T14:56:41,2027-01-06T15:10:11,completed
+9,ocena,Ocena wniosku,archiwisci,2027-01-06T15:10:11,2027-01-06T15:10:11,2027-01-06T15:35:33,completed
+10,rejestracja,Rejestracja wniosku,kancelisci,2027-01-06T16:33:08,2027-01-06T16:33:08,2027-01-06T16:41:33,completed
+11,rejestracja,Rejestracja wniosku,kancelisci,2027-01-06T16:43:32,2027-01-06T16:43:32,2027-01-06T17:01:03,completed
+10,ocena,Ocena wniosku,archiwisci,2027-01-06T16:41:33,2027-01-06T16:41:33,2027-01-06T17:19:55,completed
+11,ocena,Ocena wniosku,archiwisci,2027-01-06T17:01:03,2027-01-06T17:19:55,2027-01-06T17:45:00,completed
+9,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-06T15:35:33,2027-01-06T15:35:33,2027-01-06T20:01:25,completed
+10,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-06T17:19:55,2027-01-06T17:45:00,2027-01-07T00:54:38,completed
+11,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-06T17:45:00,2027-01-06T20:01:25,2027-01-07T01:26:39,completed
+12,rejestracja,Rejestracja wniosku,kancelisci,2027-01-07T01:48:17,2027-01-07T01:48:17,2027-01-07T01:58:02,completed
+9,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-06T20:01:25,2027-01-07T00:54:38,2027-01-07T02:15:46,completed
+10,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-07T00:54:38,2027-01-07T01:26:39,2027-01-07T02:21:59,completed
+9,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-07T02:15:46,2027-01-07T02:15:46,2027-01-07T02:26:01,completed
+10,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-07T02:21:59,2027-01-07T02:26:01,2027-01-07T02:36:26,completed
+12,ocena,Ocena wniosku,archiwisci,2027-01-07T01:58:02,2027-01-07T02:21:59,2027-01-07T02:39:51,completed
+11,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-07T01:26:39,2027-01-07T02:15:46,2027-01-07T03:24:55,completed
+11,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-07T03:24:55,2027-01-07T03:24:55,2027-01-07T03:31:39,completed
+12,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-07T02:39:51,2027-01-07T02:39:51,2027-01-07T09:35:26,completed
+12,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-07T09:35:26,2027-01-07T09:35:26,2027-01-07T10:50:34,completed
+12,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-07T10:50:34,2027-01-07T10:50:34,2027-01-07T11:00:24,completed
+13,rejestracja,Rejestracja wniosku,kancelisci,2027-01-07T17:02:05,2027-01-07T17:02:05,2027-01-07T17:15:09,completed
+13,ocena,Ocena wniosku,archiwisci,2027-01-07T17:15:09,2027-01-07T17:15:09,2027-01-07T17:59:20,completed
+14,rejestracja,Rejestracja wniosku,kancelisci,2027-01-07T18:46:26,2027-01-07T18:46:26,2027-01-07T18:57:24,completed
+14,ocena,Ocena wniosku,archiwisci,2027-01-07T18:57:24,2027-01-07T18:57:24,2027-01-07T19:21:42,completed
+15,rejestracja,Rejestracja wniosku,kancelisci,2027-01-07T22:21:59,2027-01-07T22:21:59,2027-01-07T22:31:44,completed
+14,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-07T19:21:42,2027-01-07T19:21:42,2027-01-07T23:29:26,completed
+15,ocena,Ocena wniosku,archiwisci,2027-01-07T22:31:44,2027-01-07T23:29:26,2027-01-08T00:02:21,completed
+16,rejestracja,Rejestracja wniosku,kancelisci,2027-01-08T00:15:37,2027-01-08T00:15:37,2027-01-08T00:30:11,completed
+14,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-07T23:29:26,2027-01-08T00:02:21,2027-01-08T01:01:17,completed
+14,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-08T01:01:17,2027-01-08T01:01:17,2027-01-08T01:12:24,completed
+17,rejestracja,Rejestracja wniosku,kancelisci,2027-01-08T01:21:04,2027-01-08T01:21:04,2027-01-08T01:28:50,completed
+13,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-07T17:59:20,2027-01-07T17:59:20,2027-01-08T02:50:56,completed
+18,rejestracja,Rejestracja wniosku,kancelisci,2027-01-08T02:54:19,2027-01-08T02:54:19,2027-01-08T03:05:08,completed
+16,ocena,Ocena wniosku,archiwisci,2027-01-08T00:30:11,2027-01-08T02:50:56,2027-01-08T03:07:15,completed
+17,ocena,Ocena wniosku,archiwisci,2027-01-08T01:28:50,2027-01-08T03:07:15,2027-01-08T03:28:49,completed
+15,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-08T00:02:21,2027-01-08T01:01:17,2027-01-08T04:26:54,completed
+18,ocena,Ocena wniosku,archiwisci,2027-01-08T03:05:08,2027-01-08T04:26:54,2027-01-08T04:50:48,completed
+13,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-08T02:50:56,2027-01-08T03:28:49,2027-01-08T05:03:53,completed
+13,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-08T05:03:53,2027-01-08T05:03:53,2027-01-08T05:12:37,completed
+16,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-08T03:07:15,2027-01-08T04:50:48,2027-01-08T10:22:30,completed
+19,rejestracja,Rejestracja wniosku,kancelisci,2027-01-08T10:38:39,2027-01-08T10:38:39,2027-01-08T10:51:19,completed
+15,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-08T04:26:54,2027-01-08T10:22:30,2027-01-08T11:50:14,completed
+15,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-08T11:50:14,2027-01-08T11:50:14,2027-01-08T11:59:03,completed
+17,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-08T03:28:49,2027-01-08T05:03:53,2027-01-08T12:34:27,completed
+16,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-08T10:22:30,2027-01-08T12:34:27,2027-01-08T14:01:05,completed
+16,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-08T14:01:05,2027-01-08T14:01:05,2027-01-08T14:10:39,completed
+19,ocena,Ocena wniosku,archiwisci,2027-01-08T10:51:19,2027-01-08T14:01:05,2027-01-08T14:24:30,completed
+17,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-08T12:34:27,2027-01-08T14:24:30,2027-01-08T15:28:32,completed
+17,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-08T15:28:32,2027-01-08T15:28:32,2027-01-08T15:41:38,completed
+18,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-08T04:50:48,2027-01-08T11:50:14,2027-01-08T16:29:01,completed
+19,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-08T14:24:30,2027-01-08T15:28:32,2027-01-08T17:19:16,completed
+18,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-08T16:29:01,2027-01-08T16:29:01,2027-01-08T17:23:31,completed
+20,rejestracja,Rejestracja wniosku,kancelisci,2027-01-08T17:12:33,2027-01-08T17:12:33,2027-01-08T17:26:22,completed
+18,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-08T17:23:31,2027-01-08T17:26:22,2027-01-08T17:37:16,completed
+20,ocena,Ocena wniosku,archiwisci,2027-01-08T17:26:22,2027-01-08T17:26:22,2027-01-08T17:55:15,completed
+19,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-08T17:19:16,2027-01-08T17:19:16,2027-01-08T18:49:34,completed
+19,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-08T18:49:34,2027-01-08T18:49:34,2027-01-08T19:00:02,completed
+20,poszukiwania,Poszukiwania w zasobie,archiwisci,2027-01-08T17:55:15,2027-01-08T17:55:15,2027-01-08T22:09:18,completed
+20,opracowanie,Opracowanie odpowiedzi,archiwisci,2027-01-08T22:09:18,2027-01-08T22:09:18,2027-01-08T23:07:09,completed
+20,odpowiedz,Wysłanie odpowiedzi,kancelisci,2027-01-08T23:07:09,2027-01-08T23:07:09,2027-01-08T23:19:04,completed

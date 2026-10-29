@@ -1,0 +1,24 @@
+tok 0.3 "Repair desk"
+start s "Request"
+script prep "Register" expr="date(\"2027-03-01\")" result=received
+script count "Count parts" expr="items * 2" result=parts
+user triage "Triage & <sort>" by=desk duration="tri(5m, 8m, 15m)"
+boundary slow "Waited too long" on=triage timer=PT12M
+xor ok "Repairable?"
+task fix by=tech duration="unif(5m, 10m)" assign="paid=bern(0.7)"
+user ret "Return \"device\"" by=desk duration="fixed(30m)"
+end done "Returned"
+end scrap "Scrapped"
+end gone "Gave up"
+flow s -> prep -> count -> triage -> ok
+flow ok -> fix "yes" p=0.8
+flow ok -> scrap "no" p=0.2
+flow fix -> ret -> done
+flow slow -> gone
+simulate cases=8 seed=3 arrival="unif(5m, 15m)" start="2027-03-01T09:00+01:00"
+resource desk "Front desk" count=1
+resource tech "Technicians" count=1
+variable kind "cat(phone=0.6, laptop=0.4)"
+variable value "unif(50, 500)"
+variable urgent "bern(0.3)"
+variable items "fixed(3)"

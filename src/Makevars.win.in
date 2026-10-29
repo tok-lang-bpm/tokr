@@ -1,0 +1,32 @@
+TARGET = $(subst 64,x86_64,$(subst 32,i686,$(WIN)))-pc-windows-gnu
+
+TARGET_DIR = ./rust/target
+LIBDIR = $(TARGET_DIR)/$(TARGET)/release
+STATLIB = $(LIBDIR)/libtokr.a
+PKG_LIBS = -L$(LIBDIR) -ltokr -lws2_32 -ladvapi32 -luserenv -lbcrypt -lntdll
+
+all: $(SHLIB) rust_clean
+
+.PHONY: $(STATLIB)
+
+$(SHLIB): $(STATLIB)
+
+CARGOTMP = $(CURDIR)/.cargo
+
+# The Rust standard library for the GNU target refers to libgcc_eh, which Rtools does not
+# ship; an empty archive satisfies the linker.
+$(STATLIB):
+	mkdir -p $(TARGET_DIR)/libgcc_mock
+	touch $(TARGET_DIR)/libgcc_mock/libgcc_eh.a
+	@OFFLINE_SETUP@
+	export CARGO_HOME=$(CARGOTMP) && \
+	export PATH="$(PATH):$(USERPROFILE)/.cargo/bin:$(HOME)/.cargo/bin" && \
+	export LIBRARY_PATH="$(LIBRARY_PATH);$(CURDIR)/$(TARGET_DIR)/libgcc_mock" && \
+	cargo build @CARGO_FLAGS@ --release --lib --target=$(TARGET) --manifest-path=rust/Cargo.toml --target-dir=$(TARGET_DIR)
+	rm -Rf $(CARGOTMP)
+
+rust_clean: $(SHLIB)
+	rm -Rf $(CARGOTMP) @CLEAN_TARGET@
+
+clean:
+	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS) $(TARGET_DIR)
