@@ -1,7 +1,7 @@
 Package: tokr
 Type: Package
 Title: Process Models in the Plain-Text Language 'tok'
-Version: 1.0.2
+Version: 1.0.3
 Authors@R: person("Marek", "Deja", email = "marek.deja@uj.edu.pl", role = c("aut", "cre", "cph"))
 Description: Reads, checks, formats and exports process models written in 'tok',
     a plain-text language for Business Process Model and Notation (BPMN) 2.0
@@ -28,6 +28,6 @@ RoxygenNote: 8.0.0
 Copyright: Marek Deja; the authors of the bundled Rust crates listed in
         inst/AUTHORS.
 NeedsCompilation: yes
-Packaged: 2026-10-29 21:47:12 UTC; dejam
+Packaged: 2026-10-30 11:42:15 UTC; dejam
 Author: Marek Deja [aut, cre, cph]
 Maintainer: Marek Deja <marek.deja@uj.edu.pl>

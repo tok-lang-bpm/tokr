@@ -973,6 +973,49 @@ pub fn validate_model(md: &Model, opts: &ValidateOptions) -> Vec<Issue> {
         }
     }
 
+    // --- implicit splits and events with several triggers
+    for &e in &all {
+        let t = md.tag(e);
+        if !is_act(&t) && !is_evt(&t) {
+            continue;
+        }
+        let eid = md.id_of(e);
+        let without = md
+            .out_of(eid)
+            .iter()
+            .filter(|&&f| {
+                md.id_of(f) != md.attr(e, "default")
+                    && d.find(f, &m("conditionExpression")).is_none()
+            })
+            .count();
+        if without > 1 {
+            o.add(
+                Level::Warning,
+                "W044",
+                eid,
+                format!(
+                    "{} ma kilka przepływów wychodzących bez warunku ({}), a nie jest bramką: wszystkie \
+                     zostaną wykonane (niejawne rozgałęzienie); rozgałęzienie zapisz bramką równoległą (and) \
+                     albo daj przepływom warunki.",
+                    md.label(Some(e)),
+                    without
+                ),
+            );
+        }
+        if is_evt(&t) && md.eventdefs(e).iter().filter(|x| *x != "ref").count() > 1 {
+            o.add(
+                Level::Warning,
+                "W047",
+                eid,
+                format!(
+                    "{} ma kilka wyzwalaczy (zdarzenie wielokrotne); BPMN 2.0.2 to dopuszcza, ale narzędzia \
+                     bpmn.io zgłaszają je jako błąd — zostaw je tylko, gdy opis procesu tego wymaga.",
+                    md.label(Some(e))
+                ),
+            );
+        }
+    }
+
     // --- lanes
     for &proc in &md.processes {
         let lanes = md.lanes_of(proc);
@@ -1059,6 +1102,32 @@ pub fn validate_model(md: &Model, opts: &ValidateOptions) -> Vec<Issue> {
             .copied()
             .filter(|c| is_flownode(&md.tag(*c)))
             .collect();
+        if matches!(md.tag(cont).as_str(), "subProcess" | "transaction") {
+            // start of an event sub-process: E013
+            if !md.is_event_sub(cont) && !nodes.iter().any(|n| md.tag(*n) == "startEvent") {
+                o.add(
+                    Level::Warning,
+                    "W045",
+                    md.id_of(cont),
+                    format!(
+                        "{} nie ma zdarzenia początkowego; podproces zaczyna się od swojego zdarzenia \
+                         początkowego.",
+                        md.label(Some(cont))
+                    ),
+                );
+            }
+            if !nodes.iter().any(|n| md.tag(*n) == "endEvent") {
+                o.add(
+                    Level::Warning,
+                    "W046",
+                    md.id_of(cont),
+                    format!(
+                        "{} nie ma zdarzenia końcowego; podproces kończy się swoim zdarzeniem końcowym.",
+                        md.label(Some(cont))
+                    ),
+                );
+            }
+        }
         if nodes.is_empty() {
             continue;
         }
@@ -1473,7 +1542,7 @@ pub fn validate_model(md: &Model, opts: &ValidateOptions) -> Vec<Issue> {
                         md.id_of(s),
                         format!(
                             "Współrzędne {} dotyczą elementu {}, którego już nie ma w modelu. Po zmianach w modelu \
-                             uruchom: bpmn.py all (odświeży układ).",
+                             uruchom: tok bpmn (odświeży układ).",
                             py(md.id_of(s)),
                             py(be)
                         ),
@@ -1512,7 +1581,7 @@ pub fn validate_model(md: &Model, opts: &ValidateOptions) -> Vec<Issue> {
                 "D02",
                 None,
                 format!(
-                    "{} elementów nie ma współrzędnych (BPMNDI), np. {}. Uruchom: bpmn.py layout.",
+                    "{} elementów nie ma współrzędnych (BPMNDI), np. {}. Uruchom: tok bpmn.",
                     missing.len(),
                     shown.join(", ")
                 ),

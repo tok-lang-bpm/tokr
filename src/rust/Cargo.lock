@@ -209,7 +209,7 @@ dependencies = [
 
 [[package]]
 name = "tok-bpmn"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "roxmltree",
  "serde_json",
@@ -218,7 +218,7 @@ dependencies = [
 
 [[package]]
 name = "tok-core"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "indexmap",
  "roxmltree",
@@ -226,7 +226,7 @@ dependencies = [
 
 [[package]]
 name = "tok-r"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "extendr-api",
  "tok-bpmn",
@@ -236,7 +236,7 @@ dependencies = [
 
 [[package]]
 name = "tok-sim"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "indexmap",
  "thiserror",

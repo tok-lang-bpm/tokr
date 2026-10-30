@@ -585,6 +585,16 @@ pub const BPMN_EN: &[(&str, &str)] = &[
         "path without an end event (element without outgoing flow)",
     ),
     ("W043", "sequence flow from an element back to itself"),
+    (
+        "W044",
+        "activity or event with several outgoing flows without conditions (implicit split; all of them are taken)",
+    ),
+    ("W045", "sub-process without a start event"),
+    ("W046", "sub-process without an end event"),
+    (
+        "W047",
+        "event with several triggers (multiple event), reported as an error by bpmn.io linters",
+    ),
     ("W050", "OR split without a default flow"),
     (
         "W051",
@@ -603,6 +613,102 @@ pub const BPMN_EN: &[(&str, &str)] = &[
     ("L020", "name of a splitting gateway is not a question"),
     ("L021", "gateway both joins and splits"),
     ("L030", "task without a name"),
+];
+
+/// English text for what the BPMN validator reports only for BPMN files (`tok check
+/// FILE.bpmn`): the Camunda 8 profile (`--camunda`; the codes of the executable profile of
+/// tok documents), the diagram (D) and the step numbers (K, `--steps`, `--steps-from`).
+pub const BPMN_FILE_EN: &[(&str, &str)] = &[
+    (
+        "C001",
+        "no modeler:executionPlatform=\"Camunda Cloud\" on <bpmn:definitions>; Camunda Modeler opens the file as a Camunda 7 model",
+    ),
+    (
+        "C002",
+        "no process has isExecutable=\"true\"; the engine will not deploy the model",
+    ),
+    (
+        "C010",
+        "user task without <zeebe:userTask/>; it does not reach Tasklist as a Camunda user task",
+    ),
+    (
+        "C011",
+        "user task without a form (zeebe:formDefinition); in Tasklist it can only be completed without data",
+    ),
+    (
+        "C012",
+        "the form of the user task is in no .form file of the model's folder",
+    ),
+    (
+        "C020",
+        "service or send task without <zeebe:taskDefinition type=\"…\"/>; the deployment fails",
+    ),
+    (
+        "C021",
+        "service or send task waits for a worker of its job type; without one the instance stops there",
+    ),
+    (
+        "C030",
+        "business rule task without <zeebe:calledDecision decisionId=\"…\" resultVariable=\"…\"/>",
+    ),
+    (
+        "C031",
+        "zeebe:calledDecision without decisionId or resultVariable",
+    ),
+    (
+        "C032",
+        "the decision of the business rule task is in no .dmn file of the model's folder",
+    ),
+    (
+        "C040",
+        "script task without <zeebe:script expression=\"=…\" resultVariable=\"…\"/>",
+    ),
+    (
+        "C041",
+        "zeebe:script: the FEEL expression must start with '=' and resultVariable is required",
+    ),
+    ("C050", "message event or task without messageRef"),
+    (
+        "C051",
+        "message without a name; the engine correlates messages by name",
+    ),
+    (
+        "C052",
+        "message caught by an event or receive task without <zeebe:subscription correlationKey=\"=…\"/>",
+    ),
+    ("C060", "element not executed by Camunda 8"),
+    (
+        "C070",
+        "flow leaving a gateway without a condition; the engine needs one on every outgoing flow except the default",
+    ),
+    (
+        "C071",
+        "condition of a flow is not a FEEL expression starting with '=' (e.g. =approved = true)",
+    ),
+    (
+        "C080",
+        "timer event without a value (timeDuration, timeDate or timeCycle)",
+    ),
+    (
+        "D01",
+        "diagram coordinates of an element that is no longer in the model; run tok bpmn on the file to lay it out again",
+    ),
+    (
+        "D02",
+        "elements without diagram coordinates (BPMNDI); run tok bpmn on the file to lay it out",
+    ),
+    (
+        "K01",
+        "name does not start with the step number of the process description (e.g. '12. Request for quotation')",
+    ),
+    (
+        "K02",
+        "a step of the process description has no element in the model",
+    ),
+    (
+        "K03",
+        "an element carries a step number that is not in the process description",
+    ),
 ];
 
 pub const LEVELS: &[&str] = &["basic", "analytic", "full"];
@@ -676,7 +782,11 @@ impl Diag {
                 if let Some(en) = self.text_en.as_deref().filter(|t| !t.is_empty()) {
                     return en.to_string();
                 }
-                if let Some((_, t)) = BPMN_EN.iter().find(|e| e.0 == self.code) {
+                if let Some((_, t)) = BPMN_EN
+                    .iter()
+                    .chain(BPMN_FILE_EN)
+                    .find(|e| e.0 == self.code)
+                {
                     return match self.id.as_deref() {
                         Some(id) if !id.is_empty() => format!("{t} ({id})"),
                         _ => t.to_string(),

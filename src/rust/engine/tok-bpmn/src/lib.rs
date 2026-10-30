@@ -34,7 +34,7 @@ pub enum Error {
     #[error("Plik nie jest poprawnym XML: {0}")]
     Xml(String),
     /// The model has no diagram interchange (shapes) to render.
-    #[error("Model nie ma współrzędnych (BPMNDI). Najpierw uruchom: bpmn.py layout")]
+    #[error("Model nie ma współrzędnych (BPMNDI). Najpierw uruchom: tok bpmn")]
     NoDiagram,
     /// A layout sidecar (`FILE.tok.layout`) cannot be read.
     #[error("layout sidecar: {0}")]
