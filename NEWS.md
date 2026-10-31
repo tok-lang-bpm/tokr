@@ -6,6 +6,7 @@
   simulation with the event log and the cases as data frames, XES event logs, the diagram
   in the viewer and the knitr engine `tok` for R Markdown and Quarto.
 * Every exported function has examples.
+* The package builds with Rust 1.88 or newer.
 * The engine of 1.0.2 added three warnings of the BPMN rules: `W022` (a branch without a
   condition at an element that splits conditionally), `W023` (a sequence flow that repeats
   another one) and `W043` (a sequence flow from an element back to itself); `tok_check()`

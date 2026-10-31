@@ -7,7 +7,7 @@ The R package `tokr` reads, checks, formats, exports and simulates process model
 The package compiles its Rust engine during installation. You need:
 
 - R 4.2 or newer, and on Windows [Rtools](https://cran.r-project.org/bin/windows/Rtools/) for your R version;
-- Rust 1.99 or newer from <https://www.rust-lang.org/tools/install>; on Windows also run `rustup target add x86_64-pc-windows-gnu` once.
+- Rust 1.88 or newer from <https://rust-lang.org/tools/install/>; on Windows also run `rustup target add x86_64-pc-windows-gnu` once.
 
 From CRAN:
 

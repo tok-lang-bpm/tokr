@@ -20,7 +20,7 @@ rustc <- version_of("rustc")
 if (is.na(version_of("cargo")) || is.na(rustc)) {
   stop(
     "The Rust compiler (rustc) and cargo were not found.\n",
-    "Install Rust ", rustc_min, " or newer from https://www.rust-lang.org/tools/install ",
+    "Install Rust ", rustc_min, " or newer from https://rust-lang.org/tools/install/ ",
     "(on Windows also run: rustup target add x86_64-pc-windows-gnu).",
     call. = FALSE
   )
