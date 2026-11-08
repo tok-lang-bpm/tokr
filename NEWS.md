@@ -1,6 +1,15 @@
+# tokr 1.0.4
+
+* The engine of 1.0.4: `tok_eval()` and `tok_sim()` read the variables of decision tables
+  without `inputdata` in documents of language 1.0, and `tok_import()` keeps a pool with an
+  empty process valid.
+* The SVG of `tok_svg()` and `tok_plot()` carries a text alternative for screen readers: the
+  title of the document (or the `title` argument) as its `<title>` and a `<desc>` with the
+  number of pools, lanes, flow nodes and flows.
+
 # tokr 1.0.3
 
-* First release on CRAN. The package gives R the tok engine of release 1.0.3: reading,
+* First release. The package gives R the tok engine of release 1.0.3: reading,
   checking (diagnostics as a data frame, in English or Polish), formatting, BPMN 2.0 and
   SVG export, export of every file for Camunda 8, BPMN import, decision evaluation,
   simulation with the event log and the cases as data frames, XES event logs, the diagram

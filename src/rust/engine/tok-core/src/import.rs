@@ -858,6 +858,11 @@ impl<'a, 'i> Importer<'a, 'i> {
         for (i, p) in self.pool_processes.clone() {
             let name = clean_label(p.attribute("name"));
             let pool = &self.doc.pools[i];
+            // A process without elements prints as a pool without a block, which carries no
+            // process name.
+            if pool.blackbox || pool.children.is_empty() {
+                continue;
+            }
             let derived = if inner == 1 && title.is_some() {
                 title.clone()
             } else {

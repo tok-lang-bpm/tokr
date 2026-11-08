@@ -2292,6 +2292,60 @@ pub fn export_xml(doc: &Document, target: Option<&str>) -> String {
     )
 }
 
+/// The exported tree with the optional `incoming` and `outgoing` of every flow node, for
+/// tools that read the sequence flows from them (PM4Py), serialized as `export_xml`.
+pub fn export_xml_flow_refs(doc: &Document, target: Option<&str>) -> String {
+    let mut root = export_tree(doc, target);
+    flow_refs(&mut root);
+    format!(
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+{}",
+        root.to_string_root()
+    )
+}
+
+/// Under every element with sequence flows, gives each flow node its `incoming` and
+/// `outgoing` after its documentation and extension elements, where the schema has them.
+pub fn flow_refs(e: &mut XElem) {
+    let flows: Vec<(String, String, String)> = e
+        .children
+        .iter()
+        .filter(|c| c.name == "sequenceFlow")
+        .filter_map(|c| {
+            Some((
+                c.get("id")?.to_string(),
+                c.get("sourceRef")?.to_string(),
+                c.get("targetRef")?.to_string(),
+            ))
+        })
+        .collect();
+    for child in &mut e.children {
+        flow_refs(child);
+        if flows.is_empty() || child.name == "sequenceFlow" {
+            continue;
+        }
+        let Some(id) = child.get("id").map(str::to_string) else {
+            continue;
+        };
+        let mut at = child
+            .children
+            .iter()
+            .take_while(|c| c.name == "documentation" || c.name == "extensionElements")
+            .count();
+        for (name, end) in [("incoming", 2), ("outgoing", 1)] {
+            for flow in &flows {
+                let node = if end == 2 { &flow.2 } else { &flow.1 };
+                if *node == id {
+                    let mut r = XElem::new(BPMN_NS, name);
+                    r.text = Some(flow.0.clone());
+                    child.children.insert(at, r);
+                    at += 1;
+                }
+            }
+        }
+    }
+}
+
 /// Canonical semantic XML (attributes sorted, indented), used by the conformance corpus.
 pub fn semantic_xml(doc: &Document, target: Option<&str>) -> String {
     let mut root = export_tree(doc, target);

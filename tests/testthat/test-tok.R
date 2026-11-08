@@ -32,7 +32,8 @@ test_that("BPMN and SVG are produced", {
   xml <- tok_bpmn(example("wypozyczenie.tok"))
   expect_match(xml, "<bpmndi:BPMNDiagram", fixed = TRUE)
   svg <- tok_svg(example("wypozyczenie.tok"), title = "Loan")
-  expect_match(svg, "<title>Loan</title>", fixed = TRUE)
+  expect_match(svg, "<title id=\"tok-title\">Loan</title>", fixed = TRUE)
+  expect_match(svg, "<desc id=\"tok-desc\">Process diagram with ", fixed = TRUE)
 })
 
 test_that("export writes BPMN, SVG, DMN and forms", {

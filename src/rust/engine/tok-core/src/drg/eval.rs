@@ -508,7 +508,9 @@ impl<'d> Model<'d> {
         }
     }
 
-    /// The variables a decision or business knowledge model sees: its requirements.
+    /// The variables a decision sees: the values of the caller whose names no element of
+    /// the graph declares, as the process variables a table reads under Camunda 8, and its
+    /// requirements.
     fn required(
         &self,
         ev: &Eval,
@@ -520,6 +522,11 @@ impl<'d> Model<'d> {
         let mut vars = Map::new();
         if depth > 64 {
             return vars;
+        }
+        for (name, value) in inputs {
+            if !declares(self.doc, name) {
+                vars.insert(name.clone(), value.clone());
+            }
         }
         let mut reqs = requires(b);
         if let Some(d) = self
@@ -615,4 +622,77 @@ impl<'d> Model<'d> {
 /// Evaluate one decision of a 0.7 document.
 pub fn evaluate(doc: &Document, id: &str, inputs: &Map) -> (Value, Vec<String>) {
     Model::new(doc).decision(id, inputs)
+}
+
+/// An element of the graph has this name as its variable.
+fn declares(doc: &Document, name: &str) -> bool {
+    doc.inputdata.values().any(|b| var_name(b) == name)
+        || doc.decisions.values().any(|d| var_name(&d.base) == name)
+        || doc.bkms.values().any(|b| var_name(&b.base) == name)
+}
+
+/// The names the input columns of a decision and of the decisions it requires read and no
+/// given value or requirement supplies, in document order. Each of them is null during the
+/// evaluation, so that a command line can say so.
+pub fn unset_inputs<S: AsRef<str>>(doc: &Document, id: &str, given: &[S]) -> Vec<String> {
+    let mut out = Vec::new();
+    let mut seen = Vec::new();
+    walk_unset(doc, id, given, &mut out, &mut seen);
+    out
+}
+
+fn walk_unset<S: AsRef<str>>(
+    doc: &Document,
+    id: &str,
+    given: &[S],
+    out: &mut Vec<String>,
+    seen: &mut Vec<String>,
+) {
+    if seen.iter().any(|s| s == id) {
+        return;
+    }
+    seen.push(id.to_string());
+    let Some(d) = doc.decisions.get(id) else {
+        return;
+    };
+    let reqs = requires(&d.base);
+    let supplied = |name: &str| {
+        reqs.iter().any(|r| {
+            let var = match kind_of(doc, r) {
+                Some(Kind::InputData) => doc.inputdata.get(r).map(var_name),
+                Some(Kind::Decision) => doc.decisions.get(r).map(|x| var_name(&x.base)),
+                Some(Kind::Bkm) => doc.bkms.get(r).map(|x| var_name(&x.base)),
+                _ => None,
+            };
+            var.as_deref() == Some(name)
+        }) || (!declares(doc, name) && given.iter().any(|g| g.as_ref() == name))
+    };
+    let mut columns = Vec::new();
+    table_columns(d, &mut columns);
+    for name in columns {
+        if !supplied(&name) && !out.contains(&name) {
+            out.push(name);
+        }
+    }
+    for r in reqs {
+        walk_unset(doc, &r, given, out, seen);
+    }
+}
+
+/// The input columns of a table that name one variable; other expressions are left out.
+fn table_columns(d: &Decision, out: &mut Vec<String>) {
+    if !d.relation {
+        for (name, _) in &d.inputs {
+            let name = name.trim();
+            let plain = name
+                .chars()
+                .all(|c| c.is_alphanumeric() || c == '_' || c == ' ');
+            if plain && !name.is_empty() {
+                out.push(name.to_string());
+            }
+        }
+    }
+    for line in &d.lines {
+        table_columns(line, out);
+    }
 }

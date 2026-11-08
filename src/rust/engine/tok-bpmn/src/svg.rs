@@ -719,6 +719,49 @@ fn label_bounds(md: &Model, di: Id) -> Option<[f64; 4]> {
     ])
 }
 
+/// `n` with its noun, in the singular or the plural (`1 pool`, `2 pools`).
+fn count(n: usize, noun: &str) -> String {
+    if n == 1 {
+        format!("1 {noun}")
+    } else {
+        format!("{n} {noun}s")
+    }
+}
+
+/// The text alternative of the picture: what the diagram shows, counted from the shapes it
+/// draws and the flows of the model, for a reader who hears the picture.
+fn describe(md: &Model, shapes: &OMap<[f64; 4]>) -> String {
+    let (mut pools, mut lanes, mut nodes) = (0, 0, 0);
+    for (i, _) in shapes.items() {
+        let Some(e) = md.get(Some(&i)) else {
+            continue;
+        };
+        let t = md.tag(e);
+        if t == "participant" {
+            pools += 1;
+        } else if t == "lane" {
+            lanes += 1;
+        } else if is_act(&t) || is_evt(&t) || is_gw(&t) || is_subp(&t) {
+            nodes += 1;
+        }
+    }
+    // pools and lanes are named only when the picture has them
+    let mut parts = Vec::new();
+    if pools > 0 {
+        parts.push(count(pools, "pool"));
+    }
+    if lanes > 0 {
+        parts.push(count(lanes, "lane"));
+    }
+    parts.push(count(nodes, "flow node"));
+    parts.push(count(md.seq.len(), "sequence flow"));
+    if !md.msg.is_empty() {
+        parts.push(count(md.msg.len(), "message flow"));
+    }
+    let last = parts.pop().unwrap_or_default();
+    format!("Process diagram with {} and {last}.", parts.join(", "))
+}
+
 /// Render a model that already has BPMNDI as SVG.
 ///
 /// # Errors
@@ -803,19 +846,25 @@ pub fn render_model(md: &Model, title: Option<&str>) -> Result<String, Error> {
     let (maxx, maxy) = (fmax(&xs) + 60.0, fmax(&ys) + 20.0);
     let (w_all, h_all) = (maxx - minx, maxy - miny);
     let mut p: Vec<String> = Vec::new();
+    let title = title.filter(|t| !t.is_empty());
     p.push(format!(
         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"{} {} {} {}\" width=\"{}\" height=\"{}\" \
-         font-family=\"Arial, Helvetica, sans-serif\">",
+         font-family=\"Arial, Helvetica, sans-serif\" role=\"img\" aria-labelledby=\"{}\">",
         f0(minx),
         f0(miny),
         f0(w_all),
         f0(h_all),
         f0(w_all),
-        f0(h_all)
+        f0(h_all),
+        if title.is_some() { "tok-title tok-desc" } else { "tok-desc" }
     ));
-    if let Some(t) = title.filter(|t| !t.is_empty()) {
-        p.push(format!("<title>{}</title>", esc(t)));
+    if let Some(t) = title {
+        p.push(format!("<title id=\"tok-title\">{}</title>", esc(t)));
     }
+    p.push(format!(
+        "<desc id=\"tok-desc\">{}</desc>",
+        esc(&describe(md, &shapes))
+    ));
     p.push(format!(
         "<defs><marker id=\"seqEnd\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" \
          markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"{STROKE}\"/></marker>\

@@ -833,14 +833,67 @@ fn wrap(text: &str, width: usize) -> Vec<String> {
     lines
 }
 
+/// `n` with its noun, in the singular or the plural.
+fn count(n: usize, singular: &str, plural: &str) -> String {
+    if n == 1 {
+        format!("1 {singular}")
+    } else {
+        format!("{n} {plural}")
+    }
+}
+
+/// The text alternative of the picture: what the diagram shows, for a reader who hears it.
+fn describe(shapes: &[Shape], requirements: usize) -> String {
+    let n = |k: Kind| shapes.iter().filter(|s| s.kind == k).count();
+    // the other kinds of element are named only when the picture has them
+    let mut parts = vec![count(n(Kind::Decision), "decision", "decisions")];
+    for (k, singular, plural) in [
+        (Kind::InputData, "input data", "input data"),
+        (
+            Kind::Bkm,
+            "business knowledge model",
+            "business knowledge models",
+        ),
+        (Kind::Source, "knowledge source", "knowledge sources"),
+    ] {
+        if n(k) > 0 {
+            parts.push(count(n(k), singular, plural));
+        }
+    }
+    format!(
+        "Decision requirements diagram with {} and {}.",
+        parts.join(", "),
+        count(requirements, "requirement", "requirements")
+    )
+}
+
 /// An SVG picture of the diagram of one graph.
 pub fn svg(doc: &Document, graph: &[String]) -> String {
     let (shapes, edges) = layout(doc, graph);
     let maxx = shapes.iter().map(|s| s.x + s.w).max().unwrap_or(200) + 150;
     let maxy = shapes.iter().map(|s| s.y + s.h).max().unwrap_or(100) + 80;
     let mut out = String::new();
+    let title = shapes
+        .iter()
+        .find(|s| s.kind == Kind::Decision)
+        .and_then(|s| base_of(doc, &s.id))
+        .map(|b| {
+            b.label
+                .clone()
+                .filter(|l| !l.is_empty())
+                .unwrap_or_else(|| var_name(b))
+        })
+        .filter(|t| !t.is_empty());
     out.push_str(&format!(
-        "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{maxx}\" height=\"{maxy}\" viewBox=\"0 0 {maxx} {maxy}\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"12\">\n"
+        "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{maxx}\" height=\"{maxy}\" viewBox=\"0 0 {maxx} {maxy}\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"12\" role=\"img\" aria-labelledby=\"{}\">\n",
+        if title.is_some() { "tok-title tok-desc" } else { "tok-desc" }
+    ));
+    if let Some(t) = &title {
+        out.push_str(&format!("  <title id=\"tok-title\">{}</title>\n", esc(t)));
+    }
+    out.push_str(&format!(
+        "  <desc id=\"tok-desc\">{}</desc>\n",
+        esc(&describe(&shapes, edges.len()))
     ));
     out.push_str("  <defs>\n    <marker id=\"information\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\"><path d=\"M 0 0 L 10 5 L 0 10 Z\" fill=\"#222\"/></marker>\n    <marker id=\"knowledge\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\"><path d=\"M 0 0 L 10 5 L 0 10\" fill=\"none\" stroke=\"#222\"/></marker>\n    <marker id=\"authority\" viewBox=\"0 0 10 10\" refX=\"5\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\"><circle cx=\"5\" cy=\"5\" r=\"4\" fill=\"#222\"/></marker>\n  </defs>\n");
     out.push_str(&format!(
